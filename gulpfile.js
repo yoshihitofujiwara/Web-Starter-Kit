@@ -21,13 +21,13 @@ const PATH = {
 };
 
 // 対象外ファイル
-const filterFiles = [
+const EXCLUDED = [
 	"!" + PATH.develop + "**/*コピー*.*",
 	"!" + PATH.develop + "**/_*.*"
 ];
 
 // リリースモード判定フラグ
-const isRelease = (()=>{
+const IS_REL = (()=>{
 	let _arg = process.argv.slice(1)[1];
 	return _arg && _arg.indexOf("-rel") !== -1;
 })();
@@ -48,7 +48,7 @@ $.gulp.task("default", [
 /*--------------------------------------------------------------------------
 	watch
 --------------------------------------------------------------------------*/
-$.gulp.task('watch', ()=>{
+$.gulp.task("watch", ()=>{
 	// browserSync
 	$.gulp.watch([
 		PATH.htdocs + "**/*.html",
@@ -62,7 +62,7 @@ $.gulp.task('watch', ()=>{
 	$.gulp.watch([PATH.develop + "assets/css/**/*.scss"], ["sass"]);
 
 	// js
-	$.gulp.watch([PATH.develop + "assets/**/*.js"], ["js"]);
+	$.gulp.watch([PATH.develop + "assets/js/**/*.js"], ["js"]);
 
 	// shader
 	$.gulp.watch([PATH.develop + "assets/shader/**/*.{vert,frag,glsl}"], ["shader"]);
@@ -86,7 +86,7 @@ $.gulp.task("browserSync", ()=>{
 --------------------------------------------------------------------------*/
 $.gulp.task("sass", ()=>{
 	$.plugins.rubySass(PATH.develop + "**/*.scss", {
-		style: isRelease ? "compressed" : "expanded"
+		style: IS_REL ? "compressed" : "expanded"
 	})
 	.pipe($.plugins.plumber())
 	.pipe($.plugins.pleeease({
@@ -123,23 +123,41 @@ $.gulp.task("js", ()=>{
 	esCompile(dev + "app-es/index.js", dest, "app.js");
 });
 
-
 // esCompile: Babel to ES -> min -> dest
 function esCompile(src, dest, fileName){
-	$.browserify(src)
-	.transform("babelify", {
-		presets: [
-			["env", {"targets": {"browsers": ["last 2 versions"]}}]
-    ]
-  })
-	.bundle()
-	.on("error", (err)=>{ console.log("Error : " + err.message); })
-	.pipe($.source(fileName))
-	.pipe($.buffer())
-	.pipe($.plugins.plumber())
-	.pipe($.plugins.if(isRelease, $.plugins.removeLogging()))
-	.pipe($.plugins.if(isRelease, $.plugins.uglify()))
-	.pipe($.gulp.dest(dest));
+	if(fileName){
+		compile(src, fileName);
+	} else {
+		$.fs.readdir(src, function (err, list) {
+			if (err) {
+				console.error(err);
+				process.exit(1);
+			} else {
+			  for (var i = 0; i < list.length; i++) {
+					if(list[i].indexOf('.js') > 0){
+						compile(src + list[i] ,list[i]);
+					}
+				}
+			}
+		});
+	}
+
+	function compile(src, fileName){
+		$.browserify(src)
+		.transform("babelify", {
+			presets: [
+				["env", {"targets": {"browsers": ["last 2 versions"]}}]
+	    ]
+	  })
+		.bundle()
+		.on("error", (err)=>{ console.log("Error : " + err.message); })
+		.pipe($.source(fileName))
+		.pipe($.buffer())
+		.pipe($.plugins.plumber())
+		.pipe($.plugins.if(IS_REL, $.plugins.removeLogging()))
+		.pipe($.plugins.if(IS_REL, $.plugins.uglify()))
+		.pipe($.gulp.dest(dest));
+	}
 };
 
 // jsConcat: concat -> dest
@@ -147,7 +165,7 @@ function jsConcat(src, dest, fileName){
 	if(typeof src === "string"){
 		src = [src];
 	}
-	$.gulp.src(filterFiles.concat(src))
+	$.gulp.src(EXCLUDED.concat(src))
 	.pipe($.plugins.plumber())
 	.pipe($.plugins.concat(fileName))
 	.pipe($.gulp.dest(dest));
@@ -158,13 +176,13 @@ function jsCompile(src, dest, fileName){
 	if(typeof src === "string"){
 		src = [src];
 	}
-	$.gulp.src(filterFiles.concat(src))
+	$.gulp.src(EXCLUDED.concat(src))
 	.pipe($.plugins.plumber())
 	.pipe($.plugins.jshint())
 	.pipe($.plugins.jshint.reporter("jshint-stylish"))
 	.pipe($.plugins.concat(fileName))
-	.pipe($.plugins.if(isRelease, $.plugins.removeLogging()))
-	.pipe($.plugins.if(isRelease, $.plugins.uglify()))
+	.pipe($.plugins.if(IS_REL, $.plugins.removeLogging()))
+	.pipe($.plugins.if(IS_REL, $.plugins.uglify()))
 	.pipe($.gulp.dest(dest));
 };
 
