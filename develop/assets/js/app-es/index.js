@@ -12,6 +12,7 @@ jQuery(function($){
 
 	utils.template();
 
+
 	console.log('-----------');
 	base.setup();
 

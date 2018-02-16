@@ -137,6 +137,7 @@ function esCompile(src, dest, fileName){
 	.pipe($.source(fileName))
 	.pipe($.buffer())
 	.pipe($.plugins.plumber())
+	.pipe($.plugins.if(isRelease, $.plugins.removeLogging()))
 	.pipe($.plugins.if(isRelease, $.plugins.uglify()))
 	.pipe($.gulp.dest(dest));
 };
@@ -162,6 +163,7 @@ function jsCompile(src, dest, fileName){
 	.pipe($.plugins.jshint())
 	.pipe($.plugins.jshint.reporter("jshint-stylish"))
 	.pipe($.plugins.concat(fileName))
+	.pipe($.plugins.if(isRelease, $.plugins.removeLogging()))
 	.pipe($.plugins.if(isRelease, $.plugins.uglify()))
 	.pipe($.gulp.dest(dest));
 };
