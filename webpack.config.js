@@ -44,6 +44,13 @@ module.exports = {
     ]
   },
 
+  // externals: [
+  //   {
+  //     jquery: "jQuery",
+  //     $: "jQuery"
+  //   }
+  // ],
+
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       compress: { drop_console: IS_REL}
