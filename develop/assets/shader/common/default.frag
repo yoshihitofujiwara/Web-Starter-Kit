@@ -1,3 +1,10 @@
+// #pragma glslify: import("./define.glsl")
+@import ./define;
+
+
+
+
+
 precision mediump float;
 
 uniform sampler2D texture;
