@@ -37,7 +37,7 @@ const IS_REL = (()=>{
 	default
 --------------------------------------------------------------------------*/
 $.gulp.task("default", [
-	"shader",
+	// "shader",
 	"sass",
 	"js",
 	"browserSync",
@@ -65,7 +65,7 @@ $.gulp.task("watch", ()=>{
 	$.gulp.watch([PATH.develop + "assets/js/**/*.js"], ["js"]);
 
 	// shader
-	$.gulp.watch([PATH.develop + "assets/shader/**/*.{vert,frag,glsl}"], ["shader"]);
+	// $.gulp.watch([PATH.develop + "assets/shader/**/*.{vert,frag,glsl}"], ["shader"]);
 });
 
 
@@ -147,7 +147,7 @@ function esCompile(src, dest, fileName){
 		.transform("babelify", {
 			presets: [
 				["env", {"targets": {"browsers": ["last 2 versions"]}}]
-	    ]
+			]
 	  })
 		.bundle()
 		.on("error", (err)=>{ console.log("Error : " + err.message); })

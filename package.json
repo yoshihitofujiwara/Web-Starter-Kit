@@ -17,6 +17,7 @@
     "browserify": "^14.0.0",
     "glsl-noise": "0.0.0",
     "glsl-random": "0.0.5",
+    "glslify": "^6.1.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-glslify": "git+https://github.com/yuichiroharai/gulp-glslify.git",
