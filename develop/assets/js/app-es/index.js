@@ -5,15 +5,14 @@ import utils from './utils/utils';
 
 
 
-import glsl from "glslify";
-const myFragShader = glsl(`
-void main () {
-  gl_FragColor = vec4(1.);
-}
-`);
-console.log(myFragShader);
+// import glsl from "glslify";
+// const myFragShader = glsl(`
+// void main () {
+//   gl_FragColor = vec4(1.);
+// }
+// `);
+// console.log(myFragShader);
 
-// 
 var shader = require("../../shader/common/default.frag");
 console.log(shader);
 

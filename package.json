@@ -21,8 +21,10 @@
     "babel-loader": "^7.1.2",
     "babel-plugin-glslify": "^2.0.0",
     "babel-preset-env": "^1.6.1",
+    "raw-loader": "^0.5.1",
     "glslify": "^6.1.0",
-    "glslify-import": "^3.1.0",
-    "webpack-glsl-loader": "^1.0.1"
+    "glslify-loader": "^1.0.2",
+    "glslify-import-loader": "^0.1.1",
+    "glsl-strip-comments-loader": "^1.1.0"
   }
 }

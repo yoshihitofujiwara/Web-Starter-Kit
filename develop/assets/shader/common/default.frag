@@ -1,5 +1,5 @@
 // #pragma glslify: import("./define.glsl")
-@import ./define;
+// @import ./define;
 
 
 
