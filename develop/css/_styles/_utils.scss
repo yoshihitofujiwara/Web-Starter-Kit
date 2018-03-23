@@ -3,6 +3,16 @@
 ==========================================================================*/
 
 /*--------------------------------------------------------------------------
+	clearfix
+---------------------------------------------------------------------------*/
+.u_cf::after{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+
+/*--------------------------------------------------------------------------
 	text
 --------------------------------------------------------------------------*/
 .u_tl { text-align: left;}
@@ -26,6 +36,9 @@
 /*--------------------------------------------------------------------------
 	display
 --------------------------------------------------------------------------*/
+.u_none{
+	display: none;
+}
 .u_hidden{
 	visibility: hidden;
 	overflow: hidden;
@@ -38,14 +51,14 @@
 
 /* for Portrait */
 @media all and (orientation: portrait){
-	.u_ls{
+	.u_landscape{
 		display: none !important;
 	}
 }
 
 /* for Landscape */
 @media all and (orientation: landscape){
-	.u_pr{
+	.u_portrait{
 		display: none !important;
 	}
 }
@@ -58,7 +71,7 @@
 }
 
 /* for Tablet */
-@media #{$gMqTB}{
+@media #{$MQ_TB}{
 	.u_pc{
 		display: none;
 	}
@@ -72,7 +85,7 @@
 }
 
 /* for SmartPhone */
-@media #{$gMqSP}{
+@media #{$MQ_SP}{
 	.u_tb{
 		display: none;
 	}

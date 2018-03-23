@@ -16,16 +16,16 @@ html{
 	body
 ---------------------------------------------------------------------------*/
 body{
-	font-family: $gFontFamily;
-	font-size: $gFontSize;
-	color: $gFontColor;
+	font-family: $FontFamily;
+	font-size: $FontSize;
+	color: $FontColor;
 	line-height: 1.8;
 	text-size-adjust: 100%;
 }
 
 
 /* @SP */
-@media #{$gMqSP}{
+@media #{$MQ_SP}{
 	body{
 		// font-size: 12px;
 	}
@@ -48,18 +48,16 @@ a{
 
 
 /*--------------------------------------------------------------------------
-	#header ヘッダー
+	#Header ヘッダー
 --------------------------------------------------------------------------*/
-#header{
-	// $header[Key]: '';
+#Header{
 }
 
 
 /*--------------------------------------------------------------------------
-	#main メイン
+	#Main メイン
 --------------------------------------------------------------------------*/
-#main{
-	// $main[Key]: '';
+#Main{
 	// background: url('../../images/common/spacer.png');
 	// width: image-width('../../images/common/spacer.png');
 	// height: image-height('../../images/common/spacer.png');
@@ -67,18 +65,7 @@ a{
 
 
 /*--------------------------------------------------------------------------
-	#footer フッター
+	#Footer フッター
 --------------------------------------------------------------------------*/
-#footer{
-	// $footer[Key]: '';
-}
-
-
-/*--------------------------------------------------------------------------
-	clearfix
----------------------------------------------------------------------------*/
-.cf::after{
-	content: "";
-	display: table;
-	clear: both;
+#Footer{
 }

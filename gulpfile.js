@@ -40,8 +40,8 @@ $.gulp.task("default", [
 	watch
 --------------------------------------------------------------------------*/
 $.gulp.task("watch", () => {
-	$.gulp.watch([PATH.develop + "assets/css/**/*.scss"], ["sass"]);
-	$.gulp.watch([PATH.develop + "assets/js/**/*.js"], ["webpack"]);
+	$.gulp.watch([PATH.develop + "css/**/*.scss"], ["sass"]);
+	$.gulp.watch([PATH.develop + "js/**/*.js"], ["webpack"]);
 	$.gulp.watch([
 		PATH.htdocs + "**/*.html",
 		PATH.htdocs + "assets/css/**/*.css"
@@ -68,7 +68,7 @@ $.gulp.task("browserSync", () => {
 	css
 --------------------------------------------------------------------------*/
 $.gulp.task("sass", () => {
-	$.plugins.rubySass(PATH.develop + "**/*.scss", {
+	$.plugins.rubySass(PATH.develop + "css/**/*.scss", {
 		style: IS_REL ? "compressed" : "expanded"
 	})
 		.pipe($.plugins.plumber())
@@ -78,7 +78,7 @@ $.gulp.task("sass", () => {
 			sourcemaps: false,
 			mqpacker: false
 		}))
-		.pipe($.gulp.dest(PATH.htdocs));
+		.pipe($.gulp.dest(PATH.htdocs + "assets/css/"));
 });
 
 

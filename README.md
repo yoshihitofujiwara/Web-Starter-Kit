@@ -3,13 +3,13 @@
 
 Web開発環境のベースとなる Web Starter Kit。
 gulpベースに、シンプルなタスクの開発環境になっています。
-
+
 
 ## gulpタスク
 
 1. BrowserSyncによるブラウザ同期
 1. Sassのコンパイル
-1. JSやBabelのコンパイル
+1. ESのコンパイル
 1. コマンドにリリースモードオプション追加で、JS,CSSファイルの圧縮化
 
 
@@ -26,10 +26,4 @@ $ gulp
 ```
 $ gulp -rel
 ```
-
-
-## Babel
-
-* Babelサンプルコードは、``` develop/assets/js/app-es/``` に入っています。
-* サンプルコードは、IE9までの動作確認しています。
 

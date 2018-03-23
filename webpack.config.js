@@ -4,16 +4,36 @@ const webpack = require("webpack");
 const IS_REL = !!(process.argv[2] && process.argv[2].indexOf("-rel") != -1);
 console.log(`webpack: ${IS_REL}`);
 
+// js file path
+const JS = `${__dirname}/develop/js/`;
+
 
 /*--------------------------------------------------------------------------
   config
 --------------------------------------------------------------------------*/
-const JS = `${__dirname}/develop/assets/js/`;
+/**
+ * plugins
+ */
+let plugins = [];
 
+if(IS_REL){
+  plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { drop_console: true}
+    })
+  );
+}
+plugins.push(new webpack.optimize.AggressiveMergingPlugin());
+
+
+/**
+ * exports
+ */
 module.exports = {
   entry: {
-    libs: `${JS}libs/index.js`,
-    app: `${JS}app-es/index.js`
+    // libs: `${JS}libs/index.js`,
+    // app: `${JS}app-es/index.js`,
+    scripts: `${JS}/scripts.js`
   },
 
   output: {
@@ -67,10 +87,5 @@ module.exports = {
   //   }
   // ],
 
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { drop_console: IS_REL}
-    }),
-    new webpack.optimize.AggressiveMergingPlugin(),
-  ]
+  plugins: plugins
 };

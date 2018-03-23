@@ -1,12 +1,9 @@
-let m = module.exports;
-
-
 /**
  * ES6テスト
  * template
  * @return {[type]} [description]
  */
-m.template = function () {
+export const template = function () {
 	// テンプレート文字列は「`」バッククォート
 	var str = `あ
 	い
