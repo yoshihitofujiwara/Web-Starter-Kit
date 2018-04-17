@@ -86,6 +86,8 @@ $.gulp.task("sass", () => {
 	webpack
 --------------------------------------------------------------------------*/
 $.gulp.task("webpack", () => {
-	$.webpackStream($.webpackConfig, $.webpack)
+	$.gulp.src([PATH.develop + "js/**/*.js"])
+		.pipe($.plugins.plumber())
+		.pipe($.webpackStream($.webpackConfig, $.webpack))
 		.pipe($.gulp.dest(PATH.htdocs + "assets/js/"));
 });
