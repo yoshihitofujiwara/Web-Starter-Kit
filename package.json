@@ -26,6 +26,9 @@
     "glslify-loader": "^1.0.2",
     "glslify-import-loader": "^0.1.2",
     "glsl-strip-comments-loader": "^1.1.0",
-    "raw-loader": "^0.5.1"
+    "uglify-save-license": "^0.4.1"
+  },
+  "dependencies": {
+    "ink-javascript": "0.0.1"
   }
 }

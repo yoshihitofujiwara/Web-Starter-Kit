@@ -19,7 +19,8 @@ let plugins = [];
 if(IS_REL){
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({
-      compress: { drop_console: true}
+      compress: { drop_console: true},
+      comments: require("uglify-save-license")
     })
   );
 }
