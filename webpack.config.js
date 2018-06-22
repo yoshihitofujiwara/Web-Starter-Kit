@@ -1,39 +1,70 @@
 const webpack = require("webpack");
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // リリースモード判定フラグ
-const IS_REL = !!(process.argv[2] && process.argv[2].indexOf("-rel") != -1);
-console.log(`webpack: ${IS_REL}`);
+const IS_PRODUCTION = !!(process.argv[2] && process.argv[2].indexOf("-pro") != -1);
+
+const MODE = IS_PRODUCTION ? "production" : "development";
+console.log(`webpack mode: ${MODE}`);
+
 
 // js file path
-const JS = `${__dirname}/develop/js/`;
+const JS = `${__dirname}/src/js/`;
 
 
 /*--------------------------------------------------------------------------
-  config
+  options setting
 --------------------------------------------------------------------------*/
-/**
- * plugins
- */
 let plugins = [];
+// providePlugin
+// plugins.push(
+// 	new webpack.ProvidePlugin({
+// 		$: "jquery",
+// 		INK: "ink-javascript"
+// 	})
+// );
 
-if(IS_REL){
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { drop_console: true},
-      comments: require("uglify-save-license")
-    })
-  );
+
+let optimization = {};
+if(IS_PRODUCTION){
+	optimization.minimizer = new UglifyJSPlugin({
+		compress: { drop_console: true},
+		comments: require("uglify-save-license")
+	});
 }
-plugins.push(new webpack.optimize.AggressiveMergingPlugin());
+
+optimization.splitChunks = {
+	cacheGroups: {
+		// node_modules配下のモジュールをバンドル対象とする
+		vendors: {
+			test: /node_modules/,
+			name: "libs",
+			// minSize: 1,
+			// minChunks: 2,
+			chunks: "initial",
+			enforce: true
+		},
+// 		// src/js/modules配下のモジュールをバンドル対象とする
+// 		modules: {
+// 			test: /src\/js\/modules/,
+// 			name: "modules",
+// 			chunks: "initial",
+// 			enforce: true
+// 		}
+	}
+};
 
 
-/**
- * exports
- */
+/*--------------------------------------------------------------------------
+  module
+--------------------------------------------------------------------------*/
 module.exports = {
+	watch: true,
+	mode: MODE,
+
   entry: {
     // libs: `${JS}libs/index.js`,
-    // app: `${JS}app-es/index.js`,
+		test: `${JS}/test.js`,
     scripts: `${JS}/scripts.js`
   },
 
@@ -48,12 +79,10 @@ module.exports = {
         use: [{
           loader: "babel-loader",
           options: {
-            presets: [
-              ["env", {
-                targets: { browsers: ["last 2 versions"] },
-                modules: false
-              }]
-            ]
+            presets: [["env", {
+							targets: { browsers: ["last 2 versions"] },
+							modules: false
+            }]]
           }
         }],
         exclude: /node_modules/,
@@ -81,12 +110,7 @@ module.exports = {
     ]
   },
 
-  // externals: [
-  //   {
-  //     jquery: "jQuery",
-  //     $: "jQuery"
-  //   }
-  // ],
+  plugins: plugins,
 
-  plugins: plugins
+	optimization: optimization
 };

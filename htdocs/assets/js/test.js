@@ -56,7 +56,7 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		"scripts": 0
+/******/ 		"test": 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -147,7 +147,7 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./src/js/scripts.js","libs"]);
+/******/ 	deferredModules.push(["./src/js/test.js","libs"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
@@ -190,15 +190,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ "./src/js/scripts.js":
-/*!***************************!*\
-  !*** ./src/js/scripts.js ***!
-  \***************************/
+/***/ "./src/js/test.js":
+/*!************************!*\
+  !*** ./src/js/test.js ***!
+  \************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _app_es_class_Base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-es/class/Base */ \"./src/js/app-es/class/Base.js\");\n/* harmony import */ var _app_es_class_Child__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app-es/class/Child */ \"./src/js/app-es/class/Child.js\");\n/* harmony import */ var _app_es_utils_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-es/utils/utils */ \"./src/js/app-es/utils/utils.js\");\n/**\r\n * scripts.js エントリポイント\r\n */\n\n// libs\n// npm moduleで配布されていないライブラリの場合は、requireでバンドル化\n// コード参考用 jQuery\n// window.$ = window.jQuery = require(\"./libs/jquery-3.1.0.min.js\");\n// console.log(jQuery);\n\n\n// import INK from \"ink-javascript\";\n// require(\"ink-javascript/dist/ink-0.0.1.min.js\");\n\n\n// app-es\n\n\n\n\n// import glsl from \"glslify\";\n// const myFragShader = glsl(`\n// void main () {\n//   gl_FragColor = vec4(1.);\n// }\n// `);\n// console.log(myFragShader);\n// var shader = require(\"../shader/common/default.frag\");\n// console.log(shader);\n\n\n/*==========================================================================\r\n\tinit call\r\n==========================================================================*/\njquery__WEBPACK_IMPORTED_MODULE_0___default()(function ($) {\n\tvar base = new _app_es_class_Base__WEBPACK_IMPORTED_MODULE_1__[\"default\"]('Base');\n\tvar child = new _app_es_class_Child__WEBPACK_IMPORTED_MODULE_2__[\"default\"]('Child', 999);\n\n\t_app_es_utils_utils__WEBPACK_IMPORTED_MODULE_3__[\"template\"]();\n\n\tconsole.log(INK.queryHashMap());\n\n\tconsole.log('-----------');\n\t// alert(\"2000000000000000000\");\n\t// alert(\"2000000000000000000\");\n\t// alert(\"2000000000000000000\");\n\t// alert(\"2000000000000000000\");\n\tbase.setup();\n\n\tconsole.log('-----------');\n\tchild.setup();\n});\n\n//# sourceURL=webpack:///./src/js/scripts.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _app_es_class_Base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-es/class/Base */ \"./src/js/app-es/class/Base.js\");\n/* harmony import */ var _app_es_class_Child__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app-es/class/Child */ \"./src/js/app-es/class/Child.js\");\n/* harmony import */ var _app_es_utils_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-es/utils/utils */ \"./src/js/app-es/utils/utils.js\");\n/**\r\n * scripts.js エントリポイント\r\n */\n\n// libs\n// npm moduleで配布されていないライブラリの場合は、requireでバンドル化\n// コード参考用 jQuery\n// window.$ = window.jQuery = require(\"./libs/jquery-3.1.0.min.js\");\n// console.log(jQuery);\n\n\n// import INK from \"ink-javascript\";\n\n// app-es\n\n\n\n\n// import glsl from \"glslify\";\n// const myFragShader = glsl(`\n// void main () {\n//   gl_FragColor = vec4(1.);\n// }\n// `);\n// console.log(myFragShader);\n// var shader = require(\"../shader/common/default.frag\");\n// console.log(shader);\n\n\n/*==========================================================================\r\n\tinit call\r\n==========================================================================*/\njquery__WEBPACK_IMPORTED_MODULE_0___default()(function ($) {\n\tvar base = new _app_es_class_Base__WEBPACK_IMPORTED_MODULE_1__[\"default\"]('Base');\n\tvar child = new _app_es_class_Child__WEBPACK_IMPORTED_MODULE_2__[\"default\"]('Child', 999);\n\n\t_app_es_utils_utils__WEBPACK_IMPORTED_MODULE_3__[\"template\"]();\n\n\tconsole.log(INK.queryHashMap());\n\n\tconsole.log('-----------');\n\t// alert(\"2000000000000000000\");\n\t// alert(\"2000000000000000000\");\n\t// alert(\"2000000000000000000\");\n\t// alert(\"2000000000000000000\");\n\tbase.setup();\n\n\tconsole.log('-----------');\n\tchild.setup();\n});\n\n//# sourceURL=webpack:///./src/js/test.js?");
 
 /***/ })
 

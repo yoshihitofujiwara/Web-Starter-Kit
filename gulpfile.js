@@ -16,13 +16,12 @@ const $ = {
 --------------------------------------------------------------------------*/
 // フォルダパス設定
 const PATH = {
-	develop: "develop/", // 開発用ディレクトリ
-	htdocs: "htdocs/"   // 公開用ディレクトリ
+	src: "src/", // 開発コード
+	htdocs: "htdocs/"   // 公開コード
 };
 
-// リリースモード判定フラグ
-const IS_REL = !!(process.argv[2] && process.argv[2].indexOf("-rel") != -1);
-console.log(`gulp: ${IS_REL}`);
+// 公開モードフラグ
+const IS_PRODUCTION = !!(process.argv[2] && process.argv[2].indexOf("-rel") != -1);
 
 
 /*--------------------------------------------------------------------------
@@ -40,8 +39,8 @@ $.gulp.task("default", [
 	watch
 --------------------------------------------------------------------------*/
 $.gulp.task("watch", () => {
-	$.gulp.watch([PATH.develop + "css/**/*.scss"], ["sass"]);
-	$.gulp.watch([PATH.develop + "js/**/*.js"], ["webpack"]);
+	$.gulp.watch([PATH.src + "css/**/*.scss"], ["sass"]);
+	$.gulp.watch([PATH.src + "js/**/*.js"], ["webpack"]);
 	$.gulp.watch([
 		PATH.htdocs + "**/*.html",
 		PATH.htdocs + "assets/css/**/*.css"
@@ -68,8 +67,8 @@ $.gulp.task("browserSync", () => {
 	css
 --------------------------------------------------------------------------*/
 $.gulp.task("sass", () => {
-	$.plugins.rubySass(PATH.develop + "css/**/*.scss", {
-		style: IS_REL ? "compressed" : "expanded"
+	$.plugins.rubySass(PATH.src + "css/**/*.scss", {
+		style: IS_PRODUCTION ? "compressed" : "expanded"
 	})
 		.pipe($.plugins.plumber())
 		.pipe($.plugins.pleeease({
@@ -86,7 +85,7 @@ $.gulp.task("sass", () => {
 	webpack
 --------------------------------------------------------------------------*/
 $.gulp.task("webpack", () => {
-	$.gulp.src([PATH.develop + "js/**/*.js"])
+	$.gulp.src([PATH.src + "js/**/*.js"])
 		.pipe($.plugins.plumber())
 		.pipe($.webpackStream($.webpackConfig, $.webpack))
 		.pipe($.gulp.dest(PATH.htdocs + "assets/js/"));
