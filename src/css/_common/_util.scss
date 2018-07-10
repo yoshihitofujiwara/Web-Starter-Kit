@@ -1,5 +1,5 @@
 /*==========================================================================
-	utils サイト共通ユーテリティ
+	utils
 ==========================================================================*/
 
 /*--------------------------------------------------------------------------
@@ -18,11 +18,11 @@
 .u_tl { text-align: left;}
 .u_tc { text-align: center;}
 .u_tr { text-align: right;}
+.u_em { font-weight: bold;}
 .u_sup,
 .u_sub{ font-size: 8rem;}
 .u_sup{ vertical-align: super;}
 .u_sub{ vertical-align: baseline;}
-.u_em { font-weight: bold;}
 
 
 /*--------------------------------------------------------------------------
@@ -67,32 +67,33 @@
 .u_sd,
 .u_tb,
 .u_sp{
-	display: none;
+	display: none !important;
 }
 
 /* for Tablet */
 @media #{$MQ_TB}{
 	.u_pc{
-		display: none;
+		display: none !important;
 	}
 	.u_sd,
 	.u_tb{
-		display: block;
+		display: block !important;
 		&img{
-			display: inline;
+			display: inline !important;
 		}
 	}
 }
 
 /* for SmartPhone */
 @media #{$MQ_SP}{
+	.u_pc,
 	.u_tb{
-		display: none;
+		display: none !important;
 	}
 	.u_sp{
-		display: block;
+		display: block !important;
 		&img{
-			display: inline;
+			display: inline !important;
 		}
 	}
 }
@@ -115,7 +116,7 @@
 
 
 /*--------------------------------------------------------------------------
-	hoevr
+	hover
 --------------------------------------------------------------------------*/
 .u_opacity,
 .u_all_opacity a{

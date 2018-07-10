@@ -3,39 +3,18 @@
 //==========================================================================*/
 
 // mediaquery
-$MQ_TB:  "all and (max-width: 1024px)";
-$MQ_SP:  "all and (max-width: 767px)";
+$MQ_TB: "all and (max-width: 1024px)";
+$MQ_SP: "all and (max-width: 767px)";
+$MQ_NOT_SP: "all and (min-width: 768px)";
+
+// design
+$PC_DESIGN_WIDTH: 1280;
+$SP_DESIGN_WIDTH: 750;
 
 // FontFamily
-$FontSerif: serif;
-$FontSans : sans-serif;
-$FontTimes: "Times New Roman", Times, serif;
-$FontVerdana: Verdana, sans-serif;
 $FontMeiryo: "メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", Roboto, 'Droid Sans', sans-serif;
 $FontYugo: "游ゴシック", "YuGothic", "Hiragino Kaku Gothic ProN", 'ヒラギノ角ゴ ProN W3', "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 $FontSD: Roboto, 'Droid Sans', sans-serif;
-$FontJP: "ヒラギノ角ゴ Pro W3", Osaka, "ＭＳ Ｐゴシック", Roboto, 'Droid Sans', sans-serif;
-$FontAll: Roboto, 'Droid Sans', "游ゴシック", "YuGothic", "Hiragino Kaku Gothic ProN", 'ヒラギノ角ゴ ProN W3', "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-
-// Fonts
-$FontSize  : 1.4rem;
-$FontColor : #333;
-$FontFamily: $FontYugo;
-
-// Colors
-// $MainColor : #fff;
-// $SubColor  : #fff;
-// $PointColor: #fff;
-
-// Border
-// $BorderWidth: 1px;
-// $BorderStyle: solid;
-// $BbrderColor: #e4e4e4;
-// $Border     : $BorderWidth $BorderStyle $BbrderColor;
-
-// Box
-// $BorderRadius: 5px;
-// $BoxShadow   : 1px 1px 2px rgba(0, 0, 0, .4);
 
 
 //--------------------------------------------------------------------------

@@ -8,7 +8,7 @@
 html{
 	overflow-y: scroll;
   font-size: 62.5%;
-  line-height: 100%;
+  line-height: 1;
 }
 
 
@@ -16,19 +16,11 @@ html{
 	body
 ---------------------------------------------------------------------------*/
 body{
-	font-family: $FontFamily;
-	font-size: $FontSize;
-	color: $FontColor;
+	font-family: $FontYugo;
+	font-size: 1.4rem;
+	color: #333;
 	line-height: 1.8;
 	text-size-adjust: 100%;
-}
-
-
-/* @SP */
-@media #{$MQ_SP}{
-	body{
-		// font-size: 12px;
-	}
 }
 
 
@@ -58,9 +50,6 @@ a{
 	#Main メイン
 --------------------------------------------------------------------------*/
 #Main{
-	// background: url('../../images/common/spacer.png');
-	// width: image-width('../../images/common/spacer.png');
-	// height: image-height('../../images/common/spacer.png');
 }
 
 

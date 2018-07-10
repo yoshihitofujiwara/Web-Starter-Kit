@@ -1,10 +1,16 @@
 // @_import
-@import "_import";
+@import "_common/import";
 
-// @_styles
-// @import "_styles/mixins";
-@import "_styles/animetion";
-@import "_styles/reset";
-@import "_styles/utils";
-@import "_styles/global";
-@import "_styles/components";
+// @_common
+@import "_common/keyframe";
+@import "_common/reset";
+@import "_common/util";
+@import "_common/global";
+
+// NOT SP
+// @media #{$MQ_NOT_SP}{}
+
+// SP
+// @media #{$MQ_SP}{
+//   @import "_common/_sp.scss";
+// }
