@@ -122,6 +122,10 @@ input, select, textarea {
   text-align: right;
 }
 
+.u_em {
+  font-weight: bold;
+}
+
 .u_sup,
 .u_sub {
   font-size: 8rem;
@@ -133,10 +137,6 @@ input, select, textarea {
 
 .u_sub {
   vertical-align: baseline;
-}
-
-.u_em {
-  font-weight: bold;
 }
 
 /*--------------------------------------------------------------------------
@@ -279,7 +279,7 @@ input, select, textarea {
 html {
   overflow-y: scroll;
   font-size: 62.5%;
-  line-height: 100%;
+  line-height: 1;
 }
 
 /*--------------------------------------------------------------------------
@@ -295,7 +295,6 @@ body {
           text-size-adjust: 100%;
 }
 
-/* @SP */
 /*----------------------------------------------------------------------
 	a
 ----------------------------------------------------------------------*/

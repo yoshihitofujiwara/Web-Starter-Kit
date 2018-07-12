@@ -7,16 +7,16 @@
 // コード参考用 jQuery
 // window.$ = window.jQuery = require("./libs/jquery-3.1.0.min.js");
 // console.log(jQuery);
-import $ from "jquery";
+// import $ from "jquery";
 
 // import INK from "ink-javascript";
 // require("ink-javascript/dist/ink-0.0.1.min.js");
 
 
 // app-es
-import Base from './app-es/class/Base';
-import Child from './app-es/class/Child';
-import * as utils from './app-es/utils/utils';
+import Base from './class/Base';
+import Child from './class/Child';
+import * as utils from './utils/utils';
 
 
 // import glsl from "glslify";

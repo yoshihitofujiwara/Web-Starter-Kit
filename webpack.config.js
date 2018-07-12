@@ -1,5 +1,4 @@
 const webpack = require("webpack");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // リリースモード判定フラグ
 const IS_PRODUCTION = !!(process.argv[2] && process.argv[2].indexOf("-pro") != -1);
@@ -11,11 +10,11 @@ console.log(`webpack mode: ${MODE}`);
 // js file path
 const JS = `${__dirname}/src/js/`;
 
+let plugins = [];
 
 /*--------------------------------------------------------------------------
   options setting
 --------------------------------------------------------------------------*/
-let plugins = [];
 // providePlugin
 // plugins.push(
 // 	new webpack.ProvidePlugin({
@@ -25,25 +24,17 @@ let plugins = [];
 // );
 
 
-let optimization = {};
-if(IS_PRODUCTION){
-	optimization.minimizer = new UglifyJSPlugin({
-		compress: { drop_console: true},
-		comments: require("uglify-save-license")
-	});
-}
-
-optimization.splitChunks = {
-	cacheGroups: {
-		// node_modules配下のモジュールをバンドル対象とする
-		vendors: {
-			test: /node_modules/,
-			name: "libs",
-			// minSize: 1,
-			// minChunks: 2,
-			chunks: "initial",
-			enforce: true
-		},
+// optimization.splitChunks = {
+// 	cacheGroups: {
+// 		// node_modules配下のモジュールをバンドル対象とする
+// 		vendors: {
+// 			test: /node_modules/,
+// 			name: "libs",
+// 			// minSize: 1,
+// 			// minChunks: 2,
+// 			chunks: "initial",
+// 			enforce: true
+// 		},
 // 		// src/js/modules配下のモジュールをバンドル対象とする
 // 		modules: {
 // 			test: /src\/js\/modules/,
@@ -51,8 +42,8 @@ optimization.splitChunks = {
 // 			chunks: "initial",
 // 			enforce: true
 // 		}
-	}
-};
+// 	}
+// };
 
 
 /*--------------------------------------------------------------------------
@@ -63,9 +54,7 @@ module.exports = {
 	mode: MODE,
 
   entry: {
-    // libs: `${JS}libs/index.js`,
-		test: `${JS}/test.js`,
-    scripts: `${JS}/scripts.js`
+    scripts: `${JS}/scripts/index.js`
   },
 
   output: {
@@ -110,7 +99,5 @@ module.exports = {
     ]
   },
 
-  plugins: plugins,
-
-	optimization: optimization
+  plugins: plugins
 };
