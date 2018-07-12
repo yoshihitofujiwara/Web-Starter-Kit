@@ -61,20 +61,29 @@ $.gulp.task("browserSync", () => {
 /*--------------------------------------------------------------------------
 	css
 --------------------------------------------------------------------------*/
+let cssSupported = [
+	"last 2 versions",
+	"android 4.4"
+];
+
 $.gulp.task("sass", () => {
   $.plugins
     .rubySass(PATH.src + "css/**/*.scss", {
       style: IS_PRODUCTION ? "compressed" : "expanded"
     })
     .pipe($.plugins.plumber())
-    .pipe(
-      $.plugins.pleeease({
-        browsers: ["last 2 version", "Android 4.4"],
-        minifier: false,
-        sourcemaps: false,
-        mqpacker: false
-      })
-    )
+    // .pipe($.plugins.pleeease({
+    //     browsers: cssSupported,
+    //     minifier: false,
+    //     sourcemaps: false,
+    //     mqpacker: false
+    //  }))
+    .pipe($.plugins.cssnano({
+        autoprefixer: {
+          browsers: cssSupported,
+          add: true
+        }
+      }))
     .pipe($.gulp.dest(PATH.htdocs + "assets/css/"));
 });
 
