@@ -80,22 +80,22 @@ module.exports = {
 			{
 				test: /\.(glsl|frag|vert)$/,
 				loader: "glslify-import-loader",
-				exclude: /node_modules/
+				// exclude: /node_modules/
 			},
 			{
 				test: /\.(glsl|frag|vert)$/,
 				loader: "raw-loader",
-				exclude: /node_modules/
+				// exclude: /node_modules/
 			},
 			{
 				test: /\.(glsl|frag|vert)$/,
 				loader: "glslify-loader",
-				exclude: /node_modules/
+				// exclude: /node_modules/
 			},
 			{
 				test: /\.(glsl|frag|vert)$/,
 				loader: "glsl-strip-comments",
-				exclude: /node_modules/
+				// exclude: /node_modules/
 			}
 		]
 	},

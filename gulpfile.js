@@ -29,7 +29,7 @@ const IS_PRODUCTION = !!(
 /*--------------------------------------------------------------------------
 	default
 --------------------------------------------------------------------------*/
-$.gulp.task("default", ["js", "sass", "browserSync", "watch"]);
+$.gulp.task("default", ["libs", "scripts", "sass", "browserSync", "watch"]);
 
 
 /*--------------------------------------------------------------------------
@@ -37,7 +37,8 @@ $.gulp.task("default", ["js", "sass", "browserSync", "watch"]);
 --------------------------------------------------------------------------*/
 $.gulp.task("watch", () => {
   $.gulp.watch([PATH.src + "css/**/*.scss"], ["sass"]);
-  $.gulp.watch([PATH.src + "js/**/*.js"], ["js"]);
+	$.gulp.watch([PATH.src + "js/libs/**/*.js"], ["libs"]);
+	$.gulp.watch([PATH.src + "js/scripts/**/*.js"], ["scripts"]);
   $.gulp
     .watch([PATH.htdocs + "**/*.html", PATH.htdocs + "assets/css/**/*.css"])
     .on("change", () => {
@@ -61,26 +62,18 @@ $.gulp.task("browserSync", () => {
 /*--------------------------------------------------------------------------
 	css
 --------------------------------------------------------------------------*/
-let cssSupported = [
-	"last 2 versions",
-	"android 4.4"
-];
-
 $.gulp.task("sass", () => {
   $.plugins
     .rubySass(PATH.src + "css/**/*.scss", {
       style: IS_PRODUCTION ? "compressed" : "expanded"
     })
     .pipe($.plugins.plumber())
-    // .pipe($.plugins.pleeease({
-    //     browsers: cssSupported,
-    //     minifier: false,
-    //     sourcemaps: false,
-    //     mqpacker: false
-    //  }))
     .pipe($.plugins.cssnano({
         autoprefixer: {
-          browsers: cssSupported,
+					browsers: [
+						"last 2 versions",
+						"android 6"
+					],
           add: true
         }
       }))
@@ -91,21 +84,21 @@ $.gulp.task("sass", () => {
 /*--------------------------------------------------------------------------
 	js
 --------------------------------------------------------------------------*/
-$.gulp.task("js", () => {
-  // scripts
+// scripts
+$.gulp.task("scripts", () => {
   $.gulp
     .src([
-			"!" + PATH.src + "js/libs/",
-			PATH.src + "js/**/*.js"
+			PATH.src + "js/scripts/**/*.js"
 		])
     .pipe($.plugins.plumber())
     .pipe($.webpackStream($.webpackConfig, $.webpack))
     .pipe($.gulp.dest(PATH.htdocs + "assets/js/"));
-
-  // libs
-  $.gulp
-    .src([PATH.src + "js/libs/**/*.js"])
-    .pipe($.plugins.plumber())
-    .pipe($.plugins.concat("libs.js"))
-    .pipe($.gulp.dest(PATH.htdocs + "assets/js/"));
+});
+// libs
+$.gulp.task("libs", () => {
+	$.gulp
+		.src([PATH.src + "js/libs/**/*.js"])
+		.pipe($.plugins.plumber())
+		.pipe($.plugins.concat("libs.js"))
+		.pipe($.gulp.dest(PATH.htdocs + "assets/js/"));
 });
