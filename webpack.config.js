@@ -7,44 +7,8 @@ const IS_PRODUCTION = !!(process.argv[2] && process.argv[2].indexOf("-pro") != -
 const MODE = IS_PRODUCTION ? "production" : "development";
 console.log(`webpack mode: ${MODE}`);
 
-
 // js file path
 const JS = `${__dirname}/src/js/`;
-
-let plugins = [];
-
-/*--------------------------------------------------------------------------
-  options setting
---------------------------------------------------------------------------*/
-// providePlugin
-// plugins.push(
-// 	new webpack.ProvidePlugin({
-// 		$: "jquery",
-// 		INK: "ink-javascript"
-// 	})
-// );
-
-
-// optimization.splitChunks = {
-// 	cacheGroups: {
-// 		// node_modules配下のモジュールをバンドル対象とする
-// 		vendors: {
-// 			test: /node_modules/,
-// 			name: "libs",
-// 			// minSize: 1,
-// 			// minChunks: 2,
-// 			chunks: "initial",
-// 			enforce: true
-// 		},
-// 		// src/js/modules配下のモジュールをバンドル対象とする
-// 		modules: {
-// 			test: /src\/js\/modules/,
-// 			name: "modules",
-// 			chunks: "initial",
-// 			enforce: true
-// 		}
-// 	}
-// };
 
 
 /*--------------------------------------------------------------------------
@@ -64,19 +28,24 @@ module.exports = {
 
 	module: {
 		rules: [
+			// js
 			{
-				test: /\.js[x]?$/,
+				test: /\.js$/,
 				use: [{
 					loader: "babel-loader",
 					options: {
-						presets: [["env", {
-							targets: { browsers: ["last 2 versions"] },
-							modules: false
-						}]]
+						presets: [
+							"@babel/preset-env",
+							// {
+							// 	targets: "last 2 versions, ie >= 11, Android >= 4.4"
+							// }
+						]
 					}
 				}],
 				exclude: /node_modules/,
 			},
+
+			// shader
 			{
 				test: /\.(glsl|frag|vert)$/,
 				loader: "glslify-import-loader",
@@ -100,7 +69,6 @@ module.exports = {
 		]
 	},
 
-	plugins: plugins,
 
 	optimization: {
 		minimizer: IS_PRODUCTION ? [
